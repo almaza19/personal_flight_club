@@ -1,7 +1,5 @@
-from __future__ import print_function
 import requests
 import os
-
 import service
 import urllib3
 import pandas
@@ -10,15 +8,14 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
-
-
-
+API_KEY = os.environ["api_key"]
 urllib3.disable_warnings()
 IATA = []
 city = []
+SAMPLE_SPREADSHEET_ID = "1Ko1L1Bz7iR-dv7UIyQIq8ls7d9fdIi5q8jktus8ZDL8"
+SAMPLE_RANGE_NAME = "A2:C10"
 
 
-API_KEY = "adk_dkkO9ibY5SBQk-OoqcUYQ3HrG0Gu"
 headers = {
     "apikey": API_KEY
 }
