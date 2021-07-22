@@ -31,10 +31,10 @@ for i in response_json:
         "code": IATA,
         "city": city,
     }
-    sheet = service.spreadsheets()
-    result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+sheet = service.spreadsheets()
+result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
                                 range=SAMPLE_RANGE_NAME).execute()
-    values = result.get('values', [])
+values = result.get('values', [])
 df = pandas.DataFrame(cities)
 
 print(df)
