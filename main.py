@@ -46,7 +46,7 @@ request = service.spreadsheets().values().get(spreadsheetId=SAMPLE_SPREADSHEET_I
 response = request.execute()['values']
 print(response)
 df_sheets = pandas.DataFrame(response, columns=['City', 'IATA Code', 'Lowest Price'])
-#values = result.get('values', [])
+
 df_sheets_list = df_sheets.to_dict('records')
 print("df_sheets_list", df_sheets_list) #df without index
 for c in df_sheets_list:
@@ -62,12 +62,11 @@ for c in df_sheets_list:
     }
 
 df = pandas.DataFrame(cities)
-IATA_codes = [
-    cities["code"]
-]
-print(IATA_codes)
+
+IATA_modified = [cities["code"][i:i+1] for i in range(0, len(cities["code"]), 1)]
+print(IATA_modified)
 Body = {
-    "values": [cities["code"]],
+    "values": IATA_modified,
 }
 result = service.spreadsheets().values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, body=Body, valueInputOption='RAW', range='prices!B2:B10').execute()
 print(Body)
